@@ -1,0 +1,284 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face { 
+    font-family: 'UntitledSans-Regular'; 
+    src: url('../assets/fonts/UntitledSans-Regular.otf');
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-areas: 
+    "sidebar header"
+    "sidebar main";
+    grid-template-columns: auto 4fr;
+    grid-template-rows: 80px auto;
+    font-family: 'UntitledSans-Regular'; 
+    @media (max-width: 768px) {
+        grid-template-areas: 
+        "header"
+        "main";
+        grid-template-columns: 100%;
+    }
+    header {
+        grid-area: header;
+        background-color: #1F2023;
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #31343a;
+        .header-logo {
+            width: 150px;
+        }
+        .header-menu {
+            display: flex;
+            align-items: center;
+            .header-icon {
+                font-size: 20px;
+                margin-right: 20px;
+                color: #ffffff;
+                cursor: pointer;
+            }
+            .user-pfp {
+                width: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+        }
+    }
+    .sidebar {
+        grid-area: sidebar;
+        background-color: #1F2023;
+        width: 4em;
+        transition: width 500ms;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: #9F9FA0;
+        border-right: 1px solid #31343a;
+        @media (max-width: 768px) {
+            display: none;
+        }
+        .sidebar-top {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 30px;
+            padding: 20px;
+            #menu {
+                display: none;
+            }
+            .nav-label {
+                .fa-bars { 
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+            }
+        }
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .sidebar-item {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 20px;
+                border-radius: 0px 50px 50px 0px;
+                align-items: center;
+                padding: 20px;
+                cursor: pointer;
+                transition: background-color 100ms;
+                &:hover {
+                    background-color: #27272D;
+                }
+                &:last-child {
+                    margin-bottom: 0px;
+                }
+                .expand-item {
+                    display: none;
+                    font-weight: 600;
+                }
+                .sidebar-icon {
+                    font-size: 20px;
+                    align-self: flex-start;
+                }
+            }
+        }
+        .help-item {
+            display: flex;
+            padding: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        &:hover {
+            width: 15em;
+            padding-right: 10px;
+            .sidebar-top {
+                justify-content: flex-start;
+            }
+            .sidebar-nav {
+                .sidebar-item {
+                    .expand-item {
+                        display: inline;
+                        white-space: nowrap;
+                        margin-left: 10px;
+                    }
+                }
+            }
+            .help-item {
+                justify-content: flex-start;
+            }
+        }
+    }
+    main {
+        grid-area: main;
+        background-color: #1F2023;
+        padding: 20px;
+        padding-left: 70px;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            padding-left: 0px;
+            padding: 20px;
+        }
+        .welcome-container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            .user-welcome {
+                color: #fff;
+                font-weight: 600;
+                font-size: 30px;
+            }
+        }
+        .courses {
+            .courses-nav {
+                margin-bottom: 20px;
+                .courses-nav-ul {
+                    display: flex;
+                    flex-direction: row;
+                    .courses-nav-li {
+                        list-style-type: none;
+                        color: #fff;
+                        font-size: 20px;
+                        padding: 15px;
+                        border-bottom: 1px solid #fff;
+                        cursor: pointer;
+                        &:nth-child(2) {
+                            color: #9F9FA0;
+                            border-bottom: 1px solid #2E2F36;
+                            transition: color, border-bottom 300ms;
+                            &:hover {
+                                color: #fff;
+                                border-bottom: 1px solid #fff;
+                            }
+                        }
+                    }
+                }
+            }
+            .courses-container {
+                display: flex;
+                flex-wrap: wrap;
+                .course {
+                    cursor: pointer;
+                    background-color: #27282D;
+                    width: fit-content;
+                    padding: 15px;
+                    transition: transform 300ms;
+                    border-radius: 5px;
+                    width: 400px;
+                    margin-bottom: 20px;
+                    margin-right: 20px;
+                    @media (max-width: 768px) {
+                        width: 100%;
+                        margin-right: 0px;
+                    }
+                    &:hover {
+                        transform: scale(1.01);
+                    }
+                    .course-header {
+                        margin-bottom: 10px;
+                        padding: 5px;
+                        .course-title {
+                            color: #fff;
+                            font-size: 15px;
+                            font-weight: 300;
+                            margin-bottom: 10px;
+                        }
+                        .course-commission {
+                            font-weight: 300;
+                            font-size: 11px;
+                            color: #BEBEBE;
+                        }
+                    }
+                    .course-info {
+                        display: flex;
+                        flex-direction: column;
+                        color: #BEBEBE;
+                        .info {
+                            padding: 5px;
+                            .info-icon {
+                                font-size: 15px;
+                            }
+                            span {
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                    .course-btn {
+                        background-color: #31343a;
+                        color: #DBDD62;
+                        transition: 500ms background-color;
+                        border: none;
+                        padding: 10px;
+                        width: 100%;
+                        border-radius: 5px;
+                        margin-top: 10px;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #DBDD62;
+                            color: #31343a;
+                        }
+                    }
+                }
+            }
+        }
+        .discord-invite {
+            background-color: #1C1F23;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #DBDD62;
+            border-radius: 5px;
+            width: 500px;
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+            h3, h4 {
+                color: #EBF2F2;
+                margin-bottom: 20px;
+            }
+            h4 {
+                font-weight: 300;
+                font-size: 15px;
+            }
+            h3 {
+                font-size: 16px;
+            }
+            .discord-link {
+                text-decoration: none;
+                color: #DBDD62;
+                align-self: flex-end;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
